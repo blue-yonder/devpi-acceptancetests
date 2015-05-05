@@ -1,0 +1,5 @@
+devpi-plumber
+devpi-ldap
+
+nose
+coverage
