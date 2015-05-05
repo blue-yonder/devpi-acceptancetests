@@ -4,9 +4,7 @@ python:
   - "3.4"
 env:
 # test ldap taken from http://www.forumsys.com/tutorials/integration-how-to/ldap/online-ldap-test-server/
-  - LDAP_TEST_USER=tesla
-  - LDAP_TEST_PASSWORD=password
-  - LDAP_TEST_GROUP=scientists
+  - LDAP_TEST_USER=tesla LDAP_TEST_PASSWORD=password LDAP_TEST_GROUP=scientists
 # command to install dependencies
 install: 
   - "pip install -r requirements.txt"
