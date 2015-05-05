@@ -1,11 +1,11 @@
 ---
 devpi-ldap:
-  url: ldap://localhost
+  url: ldap://ldap.forumsys.com
   user_search:
-    base: OU=mydomain,DC=mydomain,DC=local
+    base: OU=scientists,DC=mydomain,DC=local
     filter: (&(objectClass=user)(sAMAccountName={username}))
     attribute_name: distinguishedName
   group_search:
-    base: OU=mydomain,DC=mydomain,DC=local
+    base: OU=scientists,DC=example,DC=com
     filter: (&(objectClass=group)(member={userdn}))
     attribute_name: CN
