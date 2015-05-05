@@ -1,5 +1,8 @@
-devpi-plumber
-devpi-ldap
+devpi-client==2.1.0
+devpi-common==2.0.5
+devpi-ldap==1.1.0
+devpi-plumber==0.2.1
+devpi-server==2.1.5
 
 nose
 coverage
