@@ -1,6 +1,9 @@
 Devpi Acceptance Tests
 =======================
 
+[![Build Status](https://travis-ci.org/blue-yonder/devpi-acceptancetests.svg?branch=master)](https://travis-ci.org/blue-yonder/devpi-acceptancetests)
+[![Requirements Status](https://requires.io/github/blue-yonder/devpi-acceptancetests/requirements.png?branch=master)](https://requires.io/github/blue-yonder/devpi-acceptancetests/requirements/?branch=master)
+
 We rely on some devpi features and want to make sure they continue to work as expected.
 
 How to run the tests
