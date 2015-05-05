@@ -9,7 +9,7 @@ from tests.config import LDAP_CONFIG, LDAP_USER, LDAP_GROUP, LDAP_PASSWORD, NATI
 
 OTHER_USER = "otheruser"
 OTHER_PASSWORD = "otherpassword"
-PYTHON_PACKAGE = os.path.abspath(".") # just use the package containing these tests
+PYTHON_PACKAGE = os.path.abspath("dist") # just use the package containing these tests
 
 
 class ModificationRestrictionTests(unittest.TestCase):
