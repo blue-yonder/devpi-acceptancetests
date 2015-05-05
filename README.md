@@ -11,9 +11,9 @@ How to run the tests
 
 Provide some details about your LDAP environment:
 
-    export LDAP_TEST_USER=myuser
-    export LDAP_TEST_PASSWORD=mypassword
-    export LDAP_TEST_GROUP=a-group-where-myuser-is-part-of
+    export LDAP_TEST_USER=tesla
+    export LDAP_TEST_PASSWORD=password
+    export LDAP_TEST_GROUP=scientists
 
 Create the test fixtures (otherwise the upload tests will fail)
 
