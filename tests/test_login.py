@@ -3,6 +3,7 @@ import unittest
 from devpi_plumber.client import DevpiClientError
 from devpi_plumber.server import TestServer
 
+from tests.config import ldap_integration_test
 from tests.config import LDAP_CONFIG, LDAP_CONFIG_INVALID ,LDAP_USER, LDAP_PASSWORD, NATIVE_USER, NATIVE_PASSWORD
 
 
@@ -25,6 +26,7 @@ class NativeLoginTest(unittest.TestCase):
                 devpi.login(NATIVE_USER, "wrong-password")
 
 
+@ldap_integration_test
 class LdapLoginTest(unittest.TestCase):
     """
     Assert the behaviour of the LDAP-powered devpi login

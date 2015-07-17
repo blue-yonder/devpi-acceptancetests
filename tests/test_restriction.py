@@ -4,6 +4,7 @@ import unittest
 from devpi_plumber.client import DevpiClientError
 from devpi_plumber.server import TestServer
 
+from tests.config import ldap_integration_test
 from tests.config import LDAP_CONFIG, LDAP_USER, LDAP_GROUP, LDAP_PASSWORD, NATIVE_USER, NATIVE_PASSWORD
 
 
@@ -13,7 +14,9 @@ PYTHON_PACKAGE = os.path.abspath("dist") # just use the package containing these
 
 
 class ModificationRestrictionTests(unittest.TestCase):
-
+    """
+    Assert the behaviour of the `restrict-modify` flag
+    """
     def test_anonymous_user_creation(self):
         restriction = {'restrict-modify': ''}
 
@@ -26,9 +29,11 @@ class ModificationRestrictionTests(unittest.TestCase):
     def test_authorized_native_user(self):
         self._test_authorized(NATIVE_USER, NATIVE_PASSWORD, unrestricted=['root', str(NATIVE_USER)] )
 
+    @ldap_integration_test
     def test_authorized_ldap_user(self):
         self._test_authorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', str(LDAP_USER)] )
 
+    @ldap_integration_test
     def test_authorized_ldap_group(self):
         self._test_authorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', ':{}'.format(LDAP_GROUP)] )
 
@@ -65,9 +70,11 @@ class ModificationRestrictionTests(unittest.TestCase):
     def test_unauthorized_native_user(self):
         self._test_unauthorized(NATIVE_USER, NATIVE_PASSWORD, unrestricted=['root'])
 
+    @ldap_integration_test
     def test_unauthorized_ldap_user(self):
         self._test_unauthorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root'])
 
+    @ldap_integration_test
     def test_unauthorized_ldap_group(self):
         self._test_unauthorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', ':NotOneOfMyGroups'])
 
