@@ -25,7 +25,7 @@ setup(
     ],
     tests_require=[
         'nose',
-        'coverage',
+        'coverage<4',
     ],
     test_suite='nose.collector',
     classifiers=[
