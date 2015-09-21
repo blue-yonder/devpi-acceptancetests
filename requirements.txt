@@ -5,4 +5,4 @@ devpi-plumber==0.2.5
 devpi-server==2.3.1
 
 nose
-coverage==3.7.1
+coverage==4.0
