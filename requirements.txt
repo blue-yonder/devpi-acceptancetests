@@ -2,7 +2,7 @@ devpi-client==2.3.2
 devpi-common==2.0.8
 devpi-ldap==1.1.0
 devpi-plumber==0.2.5
-devpi-server==2.5.0
+devpi-server==2.5.3
+devpi-web==2.5.0
 
 nose
-coverage==4.0.2
