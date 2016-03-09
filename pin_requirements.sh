@@ -28,6 +28,3 @@ echo "=== Compiling ${REQ_BASE}.txt ==="
 
 pip-compile -i ${INDEX} --upgrade --no-header --no-index ${REQ_BASE}.in -o ${REQ_BASE}.txt
 sed -i '1i# DO NOT MODIFY THIS FILE. See `pin_requirements.sh` instead\n' ${REQ_BASE}.txt
-# Strip embedded pip options (starting with - or --)
-# In particular, necessary before compiling the dev requirements
-sed -i '/^-.*/ d' ${REQ_BASE}.txt
