@@ -1,8 +1,8 @@
-devpi-client==2.5.0
-devpi-common==2.0.8
-devpi-ldap==1.1.1
-devpi-plumber==0.2.5
-devpi-server==3.0.2
-devpi-web==3.0.0
+devpi-client
+devpi-common
+devpi-ldap
+devpi-plumber
+devpi-server
+devpi-web
 
 nose
