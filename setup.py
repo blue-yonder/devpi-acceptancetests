@@ -3,9 +3,6 @@
 import multiprocessing  # avoid crash on teardown
 from setuptools import setup, find_packages
 
-with open('README.md') as f:
-    readme = f.read()
-
 setup(
     name='devpi-acceptancetests',
     version='0.1.0',
@@ -14,7 +11,6 @@ setup(
     author_email='stephan.erb@blue-yonder.com',
     url='https://github.com/blue-yonder/devpi-acceptancetests',
     description='Acceptance tests for our devpi setup',
-    long_description=readme,
     license='new BSD',
     install_requires=[
         'devpi-plumber',
