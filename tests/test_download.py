@@ -1,33 +1,13 @@
 import os
-import subprocess
 import unittest
 
 from devpi_plumber.server import TestServer
-from twitter.common.contextutil import temporary_dir
 
 from tests.config import NATIVE_USER, NATIVE_PASSWORD
+from tests.utils import download
 
 
 PYTHON_PACKAGE = os.path.abspath("dist") # just use the package containing these tests
-
-
-def download(pkg, server_url):
-    with temporary_dir() as scratch_dir:
-        try:
-            subprocess.check_output(
-                [
-                    'pip',
-                    '--no-cache-dir',
-                    '--isolated',
-                    'download', pkg,
-                    '--dest', scratch_dir,
-                    '--index-url', server_url,
-                ],
-                stderr=subprocess.STDOUT
-            )
-            return True
-        except subprocess.CalledProcessError:
-            return False
 
 
 class DownloadTests(unittest.TestCase):
