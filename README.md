@@ -22,6 +22,15 @@ internally to check against our own LDAP server), replace the configuration in
     export LDAP_TEST_GROUP=a-group-of-myuser
 
 
+Update requirements
+-------------------
+
+Simply run the following command to update the `requirements.txt` with the lastest
+Devpi version:
+
+    pip-compile --upgrade --no-index requirements.in
+
+
 License
 -------
 

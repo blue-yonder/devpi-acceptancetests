@@ -4,5 +4,3 @@ devpi-ldap
 devpi-plumber
 devpi-server
 devpi-web
-
-nose
