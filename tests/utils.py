@@ -8,6 +8,7 @@ def wait_until(predicate, exception=RuntimeError, maxloop=30):
     n = 0
     while not predicate() and n < maxloop:
         sleep(0.1)
+        n += 1
     if n >= maxloop:
         raise exception
 
