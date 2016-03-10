@@ -28,3 +28,5 @@ echo "=== Compiling ${REQ_BASE}.txt ==="
 
 pip-compile -i ${INDEX} --upgrade --no-header --no-index ${REQ_BASE}.in -o ${REQ_BASE}.txt
 sed -i '1i# DO NOT MODIFY THIS FILE. See `pin_requirements.sh` instead\n' ${REQ_BASE}.txt
+
+echo -e '\npip>=7.0.0' >> ${REQ_BASE}.txt

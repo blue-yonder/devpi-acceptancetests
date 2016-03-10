@@ -14,7 +14,7 @@ devpi-web==3.0.0
 docutils==0.12            # via devpi-web
 execnet==1.4.1            # via devpi-server
 itsdangerous==0.24        # via devpi-server
-ldap3==1.0.4              # via devpi-ldap
+ldap3==1.1.2              # via devpi-ldap
 nose==1.3.7
 pastedeploy==1.5.2        # via pyramid
 pkginfo==1.2.1            # via devpi-client
@@ -43,4 +43,7 @@ zope.interface==4.1.3     # via pyramid
 
 # The following packages are commented out because they are
 # considered to be unsafe in a requirements file:
+# pip
 # setuptools                # via pyramid, zope.deprecation, zope.interface
+
+pip>=7.0.0
