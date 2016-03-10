@@ -23,6 +23,9 @@ class DownloadTests(unittest.TestCase):
         devpi.use(NATIVE_USER, 'index')
         devpi.login(NATIVE_USER, NATIVE_PASSWORD)
 
+        self.assertTrue(download('progressbar', devpi.url))
+        self.assertFalse(download('non_existing_package', devpi.url))
+
         self.assertFalse(download(PACKAGE_NAME, devpi.url))
         devpi.upload(PACKAGE_DIR, directory=True)
         self.assertTrue(download(PACKAGE_NAME, devpi.url))
