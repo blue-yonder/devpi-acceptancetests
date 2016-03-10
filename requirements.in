@@ -1,0 +1,8 @@
+devpi-client
+devpi-common
+devpi-ldap
+devpi-plumber
+devpi-server
+devpi-web
+
+nose
