@@ -28,14 +28,14 @@ class ReplicationTests(unittest.TestCase):
             with TestServer(config={'master-url': master.server_url, 'port': 2413}) as replica1:
                 replica1.use(NATIVE_USER, 'index')
 
-                self.assertTrue(download(PACKAGE_NAME, replica1.url))
+                wait_until(lambda: download(PACKAGE_NAME, replica1.url) is True)
                 master.remove(PACKAGE_NAME)
-                self.assertFalse(download(PACKAGE_NAME, replica1.url))
+                wait_until(lambda: download(PACKAGE_NAME, replica1.url) is False)
 
                 with TestServer(config={'master-url': master.server_url, 'port': 2412}) as replica2:
                     replica2.use(NATIVE_USER, 'index')
 
-                    self.assertFalse(download(PACKAGE_NAME, replica2.url))
+                    wait_until(lambda: download(PACKAGE_NAME, replica2.url) is False)
 
     def test_cross_replica_synchronization(self):
         """
@@ -53,8 +53,6 @@ class ReplicationTests(unittest.TestCase):
                     replica1.login(NATIVE_USER, NATIVE_PASSWORD)
                     replica1.upload(PACKAGE_DIR, directory=True)
 
-                    wait_until(lambda: download(PACKAGE_NAME, replica2.url) == True)
-
+                    wait_until(lambda: download(PACKAGE_NAME, replica2.url) is True)
                     replica1.remove(PACKAGE_NAME)
-
-                    wait_until(lambda: download(PACKAGE_NAME, replica2.url) == False)
+                    wait_until(lambda: download(PACKAGE_NAME, replica2.url) is False)
