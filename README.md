@@ -9,10 +9,6 @@ We rely on some devpi features and want to make sure they continue to work as ex
 How to run the tests
 --------------------
 
-Create the test fixtures (otherwise the upload tests will fail)
-
-    python setup.py sdist
-
 Run the tests
 
     nosetests

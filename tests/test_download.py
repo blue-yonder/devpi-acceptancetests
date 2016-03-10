@@ -4,10 +4,8 @@ import unittest
 from devpi_plumber.server import TestServer
 
 from tests.config import NATIVE_USER, NATIVE_PASSWORD
+from tests.fixture import PACKAGE_DIR, PACKAGE_NAME
 from tests.utils import download
-
-
-PYTHON_PACKAGE = os.path.abspath("dist") # just use the package containing these tests
 
 
 class DownloadTests(unittest.TestCase):
@@ -25,12 +23,9 @@ class DownloadTests(unittest.TestCase):
         devpi.use(NATIVE_USER, 'index')
         devpi.login(NATIVE_USER, NATIVE_PASSWORD)
 
-        self.assertTrue(download('progressbar', devpi.url))
-        self.assertFalse(download('non_existing_package', devpi.url))
-
-        self.assertFalse(download('devpi-acceptancetests', devpi.url))
-        devpi.upload(PYTHON_PACKAGE, directory=True)
-        self.assertTrue(download('devpi_acceptancetests', devpi.url))
+        self.assertFalse(download(PACKAGE_NAME, devpi.url))
+        devpi.upload(PACKAGE_DIR, directory=True)
+        self.assertTrue(download(PACKAGE_NAME, devpi.url))
 
     def test_master(self):
         users = { NATIVE_USER: {'password': NATIVE_PASSWORD} }
