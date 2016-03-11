@@ -51,7 +51,7 @@ class LdapLoginTest(unittest.TestCase):
                 self.assertIn('credentials valid', replica.login(LDAP_USER, LDAP_PASSWORD))
 
     def test_server_unavailable(self):
-        with TestServer(config=LDAP_CONFIG_INVALID) as devpi:
+        with TestServer(config=LDAP_CONFIG_INVALID, fail_on_output=[]) as devpi:
 
             with self.assertRaisesRegexp(DevpiClientError, '401 Unauthorized'):
                 devpi.login(LDAP_USER, LDAP_PASSWORD)
@@ -77,7 +77,7 @@ class LdapLoginTest(unittest.TestCase):
         """
         users = { LDAP_USER: {'password': NATIVE_PASSWORD} }
 
-        with TestServer(users=users, config=LDAP_CONFIG_INVALID) as devpi:
+        with TestServer(users=users, config=LDAP_CONFIG_INVALID, fail_on_output=[]) as devpi:
 
             with self.assertRaisesRegexp(DevpiClientError, '401 Unauthorized'):
                 devpi.login(LDAP_USER, NATIVE_PASSWORD)
