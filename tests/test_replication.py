@@ -18,9 +18,9 @@ class ReplicationTests(unittest.TestCase):
         This sometimes used to result in tracebacks.
         """
         users = { NATIVE_USER: {'password': NATIVE_PASSWORD} }
-        indices = { NATIVE_USER + '/index' : {'bases': 'root/pypi'} }
+        indices = { NATIVE_USER + '/index' : {} }
 
-        with TestServer(users, indices, config={'port' : 2414 }) as master:
+	with TestServer(users, indices, config={'port' : 2414, 'no-root-pypi': None}) as master:
             master.use(NATIVE_USER, 'index')
             master.login(NATIVE_USER, NATIVE_PASSWORD)
             master.upload(PACKAGE_DIR, directory=True)
@@ -42,9 +42,9 @@ class ReplicationTests(unittest.TestCase):
         Any change performed by a replica should be observable by another one.
         """
         users = { NATIVE_USER: {'password': NATIVE_PASSWORD} }
-        indices = { NATIVE_USER + '/index' : {'bases': 'root/pypi'} }
+        indices = { NATIVE_USER + '/index' : {} }
 
-        with TestServer(users, indices, config={'port' : 2414 }) as master:
+        with TestServer(users, indices, config={'port' : 2414, 'no-root-pypi': None}) as master:
             with TestServer(config={'master-url': master.server_url, 'port': 2413}) as replica1:
                 with TestServer(config={'master-url': master.server_url, 'port': 2412}) as replica2:
                     replica1.use(NATIVE_USER, 'index')
@@ -56,3 +56,4 @@ class ReplicationTests(unittest.TestCase):
                     wait_until(lambda: download(PACKAGE_NAME, replica2.url) is True)
                     replica1.remove(PACKAGE_NAME)
                     wait_until(lambda: download(PACKAGE_NAME, replica2.url) is False)
+
