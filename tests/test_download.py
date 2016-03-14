@@ -4,7 +4,7 @@ import unittest
 from devpi_plumber.server import TestServer
 
 from tests.config import NATIVE_USER, NATIVE_PASSWORD
-from tests.fixture import DIST_DIR, PACKAGE_NAME
+from tests.fixture import COMPLEX_VERSION, DIST_DIR, PACKAGE_NAME
 from tests.utils import download
 
 
@@ -29,6 +29,7 @@ class DownloadTests(unittest.TestCase):
         self.assertFalse(download(PACKAGE_NAME, devpi.url))
         devpi.upload(DIST_DIR, directory=True)
         self.assertTrue(download(PACKAGE_NAME, devpi.url))
+        self.assertTrue(download("{}=={}".format(PACKAGE_NAME, COMPLEX_VERSION), devpi.url))
 
     def assert_inherited_downloads(self, devpi):
         devpi.login(NATIVE_USER, NATIVE_PASSWORD)
