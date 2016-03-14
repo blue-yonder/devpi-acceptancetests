@@ -1,7 +1,7 @@
-from contextlib import contextmanager
-import subprocess
-from time import sleep
 import os
+import subprocess
+from contextlib import contextmanager
+from time import sleep
 
 from twitter.common.contextutil import temporary_dir
 

@@ -2,9 +2,15 @@ import unittest
 
 from devpi_plumber.client import DevpiClientError
 from devpi_plumber.server import TestServer
-
-from tests.config import ldap_integration_test
-from tests.config import LDAP_CONFIG, LDAP_CONFIG_INVALID, LDAP_USER, LDAP_PASSWORD, NATIVE_USER, NATIVE_PASSWORD
+from tests.config import (
+    LDAP_CONFIG,
+    LDAP_CONFIG_INVALID,
+    LDAP_PASSWORD,
+    LDAP_USER,
+    NATIVE_PASSWORD,
+    NATIVE_USER,
+    ldap_integration_test
+)
 
 
 class NativeLoginTest(unittest.TestCase):

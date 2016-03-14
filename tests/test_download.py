@@ -2,8 +2,7 @@ import os
 import unittest
 
 from devpi_plumber.server import TestServer
-
-from tests.config import NATIVE_USER, NATIVE_PASSWORD
+from tests.config import NATIVE_PASSWORD, NATIVE_USER
 from tests.fixture import DIST_DIR, PACKAGE_NAME
 from tests.utils import download
 

@@ -1,14 +1,13 @@
-from contextlib import contextmanager
 import os
-import requests
 import unittest
+from contextlib import contextmanager
+
+import requests
 
 from devpi_plumber.server import TestServer
-
-from tests.config import NATIVE_USER, NATIVE_PASSWORD, LDAP_CONFIG
+from tests.config import LDAP_CONFIG, NATIVE_PASSWORD, NATIVE_USER
 from tests.fixture import SOURCE_DIR
 from tests.utils import cd, wait_until
-
 
 OTHER_USER = "otheruser"
 OTHER_PASSWORD = "otherpassword"

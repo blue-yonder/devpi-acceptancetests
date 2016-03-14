@@ -3,11 +3,16 @@ import unittest
 
 from devpi_plumber.client import DevpiClientError
 from devpi_plumber.server import TestServer
-
-from tests.config import ldap_integration_test
-from tests.config import LDAP_CONFIG, LDAP_USER, LDAP_GROUP, LDAP_PASSWORD, NATIVE_USER, NATIVE_PASSWORD
+from tests.config import (
+    LDAP_CONFIG,
+    LDAP_GROUP,
+    LDAP_PASSWORD,
+    LDAP_USER,
+    NATIVE_PASSWORD,
+    NATIVE_USER,
+    ldap_integration_test
+)
 from tests.fixture import DIST_DIR
-
 
 OTHER_USER = "otheruser"
 OTHER_PASSWORD = "otherpassword"
