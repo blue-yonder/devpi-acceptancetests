@@ -7,5 +7,5 @@ setup(
     packages=find_packages(exclude=['tests']),
     url='http://blue-yonder.com',
     author='Blue Yonder GmbH',
-    author_email='platform@blue-yonder.com',
+    author_email='someone@domain.invalid',
 )
