@@ -12,7 +12,7 @@ class DownloadTests(unittest.TestCase):
 
     def assert_pypi_downloads(self, devpi):
         devpi.use('root', 'pypi')
-        self.assertTrue(download('progressbar', devpi.url))
+        self.assertTrue(download('progressbar2', devpi.url))
         self.assertFalse(download('non_existing_package', devpi.url))
 
         # A package which used to exist on PyPi but is now gone.
@@ -23,7 +23,7 @@ class DownloadTests(unittest.TestCase):
         devpi.use(NATIVE_USER, 'index')
         devpi.login(NATIVE_USER, NATIVE_PASSWORD)
 
-        self.assertTrue(download('progressbar', devpi.url))
+        self.assertTrue(download('progressbar2', devpi.url))
         self.assertFalse(download('non_existing_package', devpi.url))
 
         self.assertFalse(download(PACKAGE_NAME, devpi.url))
