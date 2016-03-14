@@ -4,7 +4,7 @@ import unittest
 from devpi_plumber.server import TestServer
 
 from tests.config import NATIVE_USER, NATIVE_PASSWORD
-from tests.fixture import PACKAGE_DIR, PACKAGE_NAME
+from tests.fixture import DIST_DIR, PACKAGE_NAME
 from tests.utils import download
 
 
@@ -27,7 +27,7 @@ class DownloadTests(unittest.TestCase):
         self.assertFalse(download('non_existing_package', devpi.url))
 
         self.assertFalse(download(PACKAGE_NAME, devpi.url))
-        devpi.upload(PACKAGE_DIR, directory=True)
+        devpi.upload(DIST_DIR, directory=True)
         self.assertTrue(download(PACKAGE_NAME, devpi.url))
 
     def test_master(self):

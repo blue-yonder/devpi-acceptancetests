@@ -6,7 +6,7 @@ from devpi_plumber.server import TestServer
 
 from tests.config import ldap_integration_test
 from tests.config import LDAP_CONFIG, LDAP_USER, LDAP_GROUP, LDAP_PASSWORD, NATIVE_USER, NATIVE_PASSWORD
-from tests.fixture import PACKAGE_DIR
+from tests.fixture import DIST_DIR
 
 
 OTHER_USER = "otheruser"
@@ -65,7 +65,7 @@ class ModificationRestrictionTests(unittest.TestCase):
             self.assertIn("changing volatile", devpi.modify_index(user + "/index", volatile=False))
 
             # upload to own index
-            self.assertNotIn("FAIL", devpi.upload(PACKAGE_DIR, directory=True))
+            self.assertNotIn("FAIL", devpi.upload(DIST_DIR, directory=True))
 
     def test_unauthorized_native_user(self):
         self._test_unauthorized(NATIVE_USER, NATIVE_PASSWORD, unrestricted=['root'])
@@ -110,4 +110,4 @@ class ModificationRestrictionTests(unittest.TestCase):
                 devpi.create_index(user + "/newindex")
 
             # upload to own index
-            self.assertNotIn("FAIL", devpi.upload(PACKAGE_DIR, directory=True))
+            self.assertNotIn("FAIL", devpi.upload(DIST_DIR, directory=True))

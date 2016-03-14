@@ -6,7 +6,7 @@ from devpi_plumber.server import TestServer
 
 from tests.config import ldap_integration_test
 from tests.config import NATIVE_USER, NATIVE_PASSWORD, LDAP_CONFIG, LDAP_USER, LDAP_GROUP, LDAP_PASSWORD
-from tests.fixture import PACKAGE_DIR
+from tests.fixture import DIST_DIR
 
 
 OTHER_USER = "otheruser"
@@ -24,7 +24,7 @@ class UploadPermissionTests(unittest.TestCase):
             devpi.use(owner_user, 'index')
             devpi.login(login_user, login_password)
 
-            self.assertNotIn("FAIL", devpi.upload(PACKAGE_DIR, directory=True))
+            self.assertNotIn("FAIL", devpi.upload(DIST_DIR, directory=True))
 
     def test_upload_to_own_index(self):
         options = {}

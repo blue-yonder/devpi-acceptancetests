@@ -1,13 +1,15 @@
+from contextlib import contextmanager
 import subprocess
 from time import sleep
+import os
 
 from twitter.common.contextutil import temporary_dir
 
 
-def wait_until(predicate, exception=RuntimeError, maxloop=30):
+def wait_until(predicate, exception=RuntimeError, maxloop=3):
     n = 0
     while not predicate() and n < maxloop:
-        sleep(0.1)
+        sleep(1)
         n += 1
     if n >= maxloop:
         raise exception
@@ -30,3 +32,13 @@ def download(pkg, server_url):
             return True
         except subprocess.CalledProcessError:
             return False
+
+
+@contextmanager
+def cd(path):
+    old_dir = os.getcwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(old_dir)
