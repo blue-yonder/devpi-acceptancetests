@@ -44,4 +44,3 @@ class DocUploadTests(unittest.TestCase):
                 ).status_code == 200,
                 maxloop=300,
             )
-

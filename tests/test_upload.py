@@ -16,8 +16,8 @@ OTHER_PASSWORD = "otherpassword"
 class UploadPermissionTests(unittest.TestCase):
 
     def _test_upload(self, owner_user, owner_password, login_user, login_password, index_options):
-        users = { owner_user: {'password': owner_password}, login_user: {'password': login_password} }
-        indices = { owner_user + '/index' : index_options }
+        users = {owner_user: {'password': owner_password}, login_user: {'password': login_password}}
+        indices = {owner_user + '/index': index_options}
 
         with TestServer(users=users, indices=indices, config=LDAP_CONFIG) as devpi:
 

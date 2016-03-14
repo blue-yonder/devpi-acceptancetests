@@ -31,18 +31,18 @@ class DownloadTests(unittest.TestCase):
         self.assertTrue(download(PACKAGE_NAME, devpi.url))
 
     def test_master(self):
-        users = { NATIVE_USER: {'password': NATIVE_PASSWORD} }
-        indices = { NATIVE_USER + '/index' : {'bases': 'root/pypi'} }
+        users = {NATIVE_USER: {'password': NATIVE_PASSWORD}}
+        indices = {NATIVE_USER + '/index': {'bases': 'root/pypi'}}
 
         with TestServer(users, indices) as devpi:
             self.assert_pypi_downloads(devpi)
             self.assert_internal_downloads(devpi)
 
     def test_replica(self):
-        users = { NATIVE_USER: {'password': NATIVE_PASSWORD} }
-        indices = { NATIVE_USER + '/index' : {'bases': 'root/pypi'} }
+        users = {NATIVE_USER: {'password': NATIVE_PASSWORD}}
+        indices = {NATIVE_USER + '/index': {'bases': 'root/pypi'}}
 
-        with TestServer(users, indices, config={'port' : 2414 }) as master:
+        with TestServer(users, indices, config={'port': 2414}) as master:
             with TestServer(config={'master-url': master.url, 'port': 2413}) as replica:
 
                 self.assert_pypi_downloads(replica)

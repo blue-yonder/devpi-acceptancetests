@@ -17,6 +17,7 @@ class ModificationRestrictionTests(unittest.TestCase):
     """
     Assert the behaviour of the `restrict-modify` flag
     """
+
     def test_anonymous_user_creation(self):
         restriction = {'restrict-modify': ''}
 
@@ -27,25 +28,25 @@ class ModificationRestrictionTests(unittest.TestCase):
                 devpi.create_user(OTHER_USER, password=OTHER_PASSWORD)
 
     def test_authorized_native_user(self):
-        self._test_authorized(NATIVE_USER, NATIVE_PASSWORD, unrestricted=['root', str(NATIVE_USER)] )
+        self._test_authorized(NATIVE_USER, NATIVE_PASSWORD, unrestricted=['root', str(NATIVE_USER)])
 
     @ldap_integration_test
     def test_authorized_ldap_user(self):
-        self._test_authorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', str(LDAP_USER)] )
+        self._test_authorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', str(LDAP_USER)])
 
     @ldap_integration_test
     def test_authorized_ldap_group(self):
-        self._test_authorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', ':{}'.format(LDAP_GROUP)] )
+        self._test_authorized(LDAP_USER, LDAP_PASSWORD, unrestricted=['root', ':{}'.format(LDAP_GROUP)])
 
     def _test_authorized(self, user, password, unrestricted):
         """
         An unrestricted user can do anything once logged in.
         """
         config = LDAP_CONFIG
-        config.update({'restrict-modify': ",".join(unrestricted) })
+        config.update({'restrict-modify': ",".join(unrestricted)})
 
-        users = { user : {'password': password } }
-        indices = { user + "/index" : {} }
+        users = {user: {'password': password}}
+        indices = {user + "/index": {}}
 
         with TestServer(users=users, indices=indices, config=config) as devpi:
 
@@ -83,10 +84,10 @@ class ModificationRestrictionTests(unittest.TestCase):
         A restricted user can only upload and do nothing else,
         """
         config = LDAP_CONFIG
-        config.update({'restrict-modify': ",".join(unrestricted) })
+        config.update({'restrict-modify': ",".join(unrestricted)})
 
-        users = { user : {'password': password } }
-        indices = { user + "/index" : {} }
+        users = {user: {'password': password}}
+        indices = {user + "/index": {}}
 
         with TestServer(users=users, indices=indices, config=config) as devpi:
 
