@@ -1,8 +1,6 @@
-import os
-import unittest
-from contextlib import contextmanager
-
 import requests
+from twitter.common.contextutil import pushd
+import unittest
 
 from devpi_plumber.server import TestServer
 from tests.config import LDAP_CONFIG, NATIVE_PASSWORD, NATIVE_USER
@@ -11,16 +9,6 @@ from tests.utils import cd, wait_until
 
 OTHER_USER = "otheruser"
 OTHER_PASSWORD = "otherpassword"
-
-
-@contextmanager
-def cd(path):
-    old_dir = os.getcwd()
-    os.chdir(path)
-    try:
-        yield
-    finally:
-        os.chdir(old_dir)
 
 
 class DocUploadTests(unittest.TestCase):
@@ -34,7 +22,7 @@ class DocUploadTests(unittest.TestCase):
             devpi.use(NATIVE_USER, 'index')
             devpi.login(NATIVE_USER, NATIVE_PASSWORD)
 
-            with cd(SOURCE_DIR):
+            with pushd(SOURCE_DIR):
                 devpi.upload(path=None, with_docs=True)
 
             wait_until(
