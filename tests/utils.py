@@ -1,6 +1,4 @@
-import os
 import subprocess
-from contextlib import contextmanager
 from time import sleep
 
 from twitter.common.contextutil import temporary_dir
@@ -32,13 +30,3 @@ def download(pkg, server_url):
             return True
         except subprocess.CalledProcessError:
             return False
-
-
-@contextmanager
-def cd(path):
-    old_dir = os.getcwd()
-    os.chdir(path)
-    try:
-        yield
-    finally:
-        os.chdir(old_dir)
