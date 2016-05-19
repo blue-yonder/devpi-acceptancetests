@@ -1,5 +1,5 @@
-import os
 import unittest
+from collections import OrderedDict
 
 from devpi_plumber.server import TestServer
 from tests.config import NATIVE_PASSWORD, NATIVE_USER
@@ -55,3 +55,32 @@ class ReplicationTests(unittest.TestCase):
                     wait_until(lambda: download(PACKAGE_NAME, replica2.url) is True)
                     replica1.remove(PACKAGE_NAME)
                     wait_until(lambda: download(PACKAGE_NAME, replica2.url) is False)
+
+    @unittest.skip("Bug in Devpi 4.0.0")
+    def test_failed_master(self):
+        """
+        Test that a replica can still serve packages even if the master is down.
+
+        https://bitbucket.org/hpk42/devpi/issues/353/non-available-mirrors-can-abort-index
+        """
+        users = {'user': {'password': NATIVE_PASSWORD}}
+        indices = OrderedDict([
+            ('user/baseindex', {}),
+            ('user/index', {'bases': 'root/pypi,user/baseindex'})
+        ])
+        master_context = TestServer(users, indices, config={'port': 2414})
+        with master_context as master:
+            # Upload packages to baseindex
+            master.use('user', 'baseindex')
+            master.login('user', NATIVE_PASSWORD)
+            master.upload(DIST_DIR, directory=True)
+
+            with TestServer(config={'master-url': master.server_url, 'port': 2413}) as replica:
+                replica.use('user', 'index')
+
+                # Request package on a replica
+                wait_until(lambda: download(PACKAGE_NAME, replica.url) is True)
+
+                # Terminate the master. Downloading the package should still succeed
+                master_context.__exit__(None, None, None)
+                wait_until(lambda: download(PACKAGE_NAME, replica.url) is True)
