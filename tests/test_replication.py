@@ -1,9 +1,10 @@
+import os
 import unittest
 from collections import OrderedDict
 
 from devpi_plumber.server import TestServer
 from tests.config import NATIVE_PASSWORD, NATIVE_USER
-from tests.fixture import DIST_DIR, PACKAGE_NAME
+from tests.fixture import DIST_DIR, PACKAGE_NAME, FLASK_WHEEL
 from tests.utils import download, wait_until
 
 
@@ -84,3 +85,4 @@ class ReplicationTests(unittest.TestCase):
                 # Terminate the master. Downloading the package should still succeed
                 master_context.__exit__(None, None, None)
                 wait_until(lambda: download(PACKAGE_NAME, replica.url) is True)
+
