@@ -13,7 +13,7 @@ defusedxml==0.4.1         # via devpi-web
 devpi-client==2.6.4
 devpi-common==3.0.1
 devpi-ldap==1.2.0
-devpi-plumber==0.2.15
+devpi-plumber[test]==0.3.0
 devpi-server==4.1.0
 devpi-web==3.1.1
 docutils==0.12            # via devpi-web, readme-renderer

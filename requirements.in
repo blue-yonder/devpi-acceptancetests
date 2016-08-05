@@ -1,6 +1,6 @@
 devpi-client
 devpi-common
 devpi-ldap
-devpi-plumber
+devpi-plumber[test]
 devpi-server
 devpi-web
