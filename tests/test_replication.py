@@ -20,7 +20,7 @@ class ReplicationTests(unittest.TestCase):
         users = {NATIVE_USER: {'password': NATIVE_PASSWORD}}
         indices = {NATIVE_USER + '/index': {}}
 
-        with TestServer(users, indices, config={'port': 2414, 'no-root-pypi': None}) as master:
+        with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'no-root-pypi': None}) as master:
             master.use(NATIVE_USER, 'index')
             master.login(NATIVE_USER, NATIVE_PASSWORD)
             master.upload(DIST_DIR, directory=True)
@@ -44,7 +44,7 @@ class ReplicationTests(unittest.TestCase):
         users = {NATIVE_USER: {'password': NATIVE_PASSWORD}}
         indices = {NATIVE_USER + '/index': {}}
 
-        with TestServer(users, indices, config={'port': 2414, 'no-root-pypi': None}) as master:
+        with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'no-root-pypi': None}) as master:
             with TestServer(config={'master-url': master.server_url, 'port': 2413}, fail_on_output=[]) as replica1:
                 with TestServer(config={'master-url': master.server_url, 'port': 2412}) as replica2:
                     replica1.use(NATIVE_USER, 'index')
@@ -69,7 +69,7 @@ class ReplicationTests(unittest.TestCase):
             ('user/baseindex', {}),
             ('user/index', {'bases': 'root/pypi,user/baseindex'})
         ])
-        master_context = TestServer(users, indices, config={'port': 2414})
+        master_context = TestServer(users, indices, config={'role': 'master', 'port': 2414})
         with master_context as master:
             # Upload packages to baseindex
             master.use('user', 'baseindex')
