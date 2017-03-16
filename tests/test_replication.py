@@ -46,7 +46,7 @@ class ReplicationTests(unittest.TestCase):
 
         with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'no-root-pypi': None}) as master:
             with TestServer(config={'master-url': master.server_url, 'port': 2413}, fail_on_output=[]) as replica1:
-                with TestServer(config={'master-url': master.server_url, 'port': 2412}) as replica2:
+                with TestServer(config={'master-url': master.server_url, 'port': 2412}, fail_on_output=[]) as replica2:
                     replica1.use(NATIVE_USER, 'index')
                     replica2.use(NATIVE_USER, 'index')
 
