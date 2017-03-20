@@ -57,7 +57,6 @@ class ReplicationTests(unittest.TestCase):
                     replica1.remove(PACKAGE_NAME)
                     wait_until(lambda: download(PACKAGE_NAME, replica2.url) is False)
 
-    @unittest.skip("Bug in Devpi 4.0.0")
     def test_failed_master(self):
         """
         Test that a replica can still serve packages even if the master is down.

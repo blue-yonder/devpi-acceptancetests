@@ -10,9 +10,10 @@ from tests.fixture import DIST_DIR, FLASK_WHEEL
 
 class InheritanceTests(unittest.TestCase):
 
-    @unittest.skip("Broken in devpi 4.0.0")
     def test_correct_resolution_order(self):
         """
+        Test correct resolution order.
+
         We assert two points:
         * Mirrors should not shadow packages available on internal indices.
         * Internal indices are checked before mirrors so that we know about
