@@ -1,8 +1,7 @@
 sudo: required # run on non-container-based infra
 language: python
 python:
-  - "2.7"
-  - "3.4"
+  - "3.6"
 install: 
   - "pip install -r requirements_dev.txt"
   - "pip install -r requirements.txt"
