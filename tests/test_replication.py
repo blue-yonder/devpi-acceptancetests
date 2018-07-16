@@ -74,7 +74,7 @@ class ReplicationTests(unittest.TestCase):
             master.login('user', NATIVE_PASSWORD)
             master.upload(DIST_DIR, directory=True)
 
-            with TestServer(config={'master-url': master.server_url, 'port': 2413, 'request-timeout': 30}) as replica:
+            with TestServer(config={'master-url': master.server_url, 'port': 2413, 'request-timeout': 30}, fail_on_output=[]) as replica:
                 replica.use('user', 'index')
 
                 # Request package on a replica
