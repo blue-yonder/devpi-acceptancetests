@@ -1,10 +1,9 @@
-import os
 import unittest
 from collections import OrderedDict
 
 from devpi_plumber.server import TestServer
 from tests.config import NATIVE_PASSWORD, NATIVE_USER
-from tests.fixture import DIST_DIR, PACKAGE_NAME, FLASK_WHEEL
+from tests.fixture import DIST_DIR, PACKAGE_NAME
 from tests.utils import download, wait_until
 
 
@@ -20,12 +19,12 @@ class ReplicationTests(unittest.TestCase):
         users = {NATIVE_USER: {'password': NATIVE_PASSWORD}}
         indices = {NATIVE_USER + '/index': {}}
 
-        with TestServer(users, indices, config={'role': 'master', 'port': 2414}) as master:
+        with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'request-timeout': 30}) as master:
             master.use(NATIVE_USER, 'index')
             master.login(NATIVE_USER, NATIVE_PASSWORD)
             master.upload(DIST_DIR, directory=True)
 
-            with TestServer(config={'master-url': master.server_url, 'port': 2413}) as replica1:
+            with TestServer(config={'master-url': master.server_url, 'port': 2413, 'request-timeout': 30}) as replica1:
                 replica1.use(NATIVE_USER, 'index')
 
                 wait_until(lambda: download(PACKAGE_NAME, replica1.url) is True)
@@ -68,14 +67,14 @@ class ReplicationTests(unittest.TestCase):
             ('user/baseindex', {}),
             ('user/index', {'bases': 'root/pypi,user/baseindex'})
         ])
-        master_context = TestServer(users, indices, config={'role': 'master', 'port': 2414})
+        master_context = TestServer(users, indices, config={'role': 'master', 'port': 2414, 'request-timeout': 30})
         with master_context as master:
             # Upload packages to baseindex
             master.use('user', 'baseindex')
             master.login('user', NATIVE_PASSWORD)
             master.upload(DIST_DIR, directory=True)
 
-            with TestServer(config={'master-url': master.server_url, 'port': 2413}) as replica:
+            with TestServer(config={'master-url': master.server_url, 'port': 2413, 'request-timeout': 30}) as replica:
                 replica.use('user', 'index')
 
                 # Request package on a replica
