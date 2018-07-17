@@ -58,8 +58,8 @@ class DownloadTests(unittest.TestCase):
         users = { NATIVE_USER: {'password': NATIVE_PASSWORD} }
         indices = { NATIVE_USER + '/index' : {'bases': 'root/pypi'} }
 
-        with TestServer(users, indices, config={'role': 'master', 'port': 2414}) as master:
-            with TestServer(config={'master-url': master.url, 'port': 2413}) as replica:
+        with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'request-timeout': 60}) as master:
+            with TestServer(config={'master-url': master.url, 'port': 2413, 'request-timeout': 60}) as replica:
 
                 self.assert_pypi_downloads(replica)
                 self.assert_internal_downloads(replica)
