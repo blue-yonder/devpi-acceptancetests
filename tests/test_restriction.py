@@ -68,7 +68,7 @@ class ModificationRestrictionTests(unittest.TestCase):
             self.assertIn("user modified", devpi.modify_user(user, email="test@example.com"))
 
             # modify own index
-            self.assertIn("changing volatile", devpi.modify_index(user + "/index", volatile=False))
+            self.assertIn("volatile=False", devpi.modify_index(user + "/index", volatile=False))
 
             # upload to own index
             self.assertNotIn("FAIL", devpi.upload(DIST_DIR, directory=True))
