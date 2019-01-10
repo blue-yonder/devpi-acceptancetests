@@ -19,19 +19,19 @@ class ReplicationTests(unittest.TestCase):
         users = {NATIVE_USER: {'password': NATIVE_PASSWORD}}
         indices = {NATIVE_USER + '/index': {}}
 
-        with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'request-timeout': 30}) as master:
+        with TestServer(users, indices, config={'role': 'master', 'port': 2414, 'request-timeout': 30, 'replica-max-retries': 2}) as master:
             master.use(NATIVE_USER, 'index')
             master.login(NATIVE_USER, NATIVE_PASSWORD)
             master.upload(DIST_DIR, directory=True)
 
-            with TestServer(config={'master-url': master.server_url, 'port': 2413, 'request-timeout': 30}) as replica1:
+            with TestServer(config={'master-url': master.server_url, 'port': 2413, 'request-timeout': 30, 'replica-max-retries': 2}) as replica1:
                 replica1.use(NATIVE_USER, 'index')
 
                 wait_until(lambda: download(PACKAGE_NAME, replica1.url) is True)
                 master.remove(PACKAGE_NAME)
                 wait_until(lambda: download(PACKAGE_NAME, replica1.url) is False)
 
-                with TestServer(config={'master-url': master.server_url, 'port': 2412}) as replica2:
+                with TestServer(config={'master-url': master.server_url, 'port': 2412, 'request-timeout': 30, 'replica-max-retries': 2}) as replica2:
                     replica2.use(NATIVE_USER, 'index')
 
                     wait_until(lambda: download(PACKAGE_NAME, replica2.url) is False)
