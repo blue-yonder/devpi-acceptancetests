@@ -4,4 +4,3 @@ devpi-ldap
 devpi-plumber[test]
 devpi-server
 devpi-web
-ldap3<2  # devpi-ldap is incompatible with ldap3>=2

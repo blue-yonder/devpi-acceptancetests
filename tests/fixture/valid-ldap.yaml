@@ -3,10 +3,10 @@
 devpi-ldap:
   url: ldap://ldap.forumsys.com
   user_search:
-    base: OU=scientists,DC=example,DC=com
-    filter: (&(objectClass=user)(sAMAccountName={username}))
-    attribute_name: distinguishedName
+    base: DC=example,DC=com
+    filter: (&(objectClass=inetOrgPerson)(uid={username}))
+    attribute_name: CN
   group_search:
-    base: OU=scientists,DC=example,DC=com
-    filter: (&(objectClass=group)(member={userdn}))
+    base: DC=example,DC=com
+    filter: (&(objectClass=groupOfUniqueNames)(uniqueMember={userdn}))
     attribute_name: CN

@@ -16,13 +16,9 @@ setup(
         'devpi-plumber',
         'devpi-ldap'
     ],
-    setup_requires=[
-        'nose'
-    ],
     tests_require=[
-        'nose'
+        'pytest'
     ],
-    test_suite='nose.collector',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

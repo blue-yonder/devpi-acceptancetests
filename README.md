@@ -11,7 +11,7 @@ How to run the tests
 
 Run the tests
 
-    nosetests
+    pytest
 
 Travis runs the tests without LDAP support. If you want to enable them (as we do
 internally to check against our own LDAP server), replace the configuration in
