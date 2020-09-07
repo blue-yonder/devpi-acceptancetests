@@ -28,7 +28,7 @@ filelock==3.0.10          # via tox
 hupper==1.5               # via pyramid
 idna==2.8                 # via requests
 itsdangerous==1.1.0       # via devpi-server
-ldap3==1.4.0              # via -r requirements.in, devpi-ldap
+ldap3==2.8.1              # via -r requirements.in, devpi-ldap
 passlib[argon2]==1.7.1    # via devpi-server
 pastedeploy==2.0.1        # via plaster-pastedeploy
 pkginfo==1.5.0.1          # via devpi-client
