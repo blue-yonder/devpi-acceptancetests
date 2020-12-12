@@ -35,7 +35,7 @@ pkginfo==1.5.0.1          # via devpi-client
 plaster-pastedeploy==0.6  # via pyramid
 plaster==1.0              # via plaster-pastedeploy, pyramid
 pluggy==0.9.0             # via devpi-client, devpi-server, tox
-py==1.8.0                 # via devpi-client, devpi-common, devpi-server, tox
+py==1.10.0                 # via devpi-client, devpi-common, devpi-server, tox
 pyasn1==0.4.5             # via ldap3
 pycparser==2.19           # via cffi
 pygments==2.3.1           # via devpi-web, readme-renderer
