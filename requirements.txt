@@ -14,7 +14,7 @@ backports.functools-lru-cache==1.6.4
     # via soupsieve
 beautifulsoup4==4.7.1
     # via devpi-web
-bleach==3.1.4
+bleach==3.3.0
     # via readme-renderer
 certifi==2018.11.29
     # via requests
@@ -74,6 +74,8 @@ ldap3==1.4.0
     # via
     #   -r requirements.in
     #   devpi-ldap
+packaging==20.9
+    # via bleach
 passlib[argon2]==1.7.1
     # via devpi-server
 pastedeploy==2.0.1
@@ -105,6 +107,8 @@ pygments==2.3.1
     # via
     #   devpi-web
     #   readme-renderer
+pyparsing==2.4.7
+    # via packaging
 pyramid-chameleon==0.3
     # via devpi-web
 pyramid==1.10.2
